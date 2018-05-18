@@ -1,0 +1,115 @@
+// Author: Alexis Dionne
+// Started on: 18/05/2018
+// Last updated on: 18/05/2018
+// Write program that asks the user for a sentence (a string) and counts the frequency of each letter, then displays statistics about
+// these frequencies.
+
+import java.util.Scanner;
+
+public class CountingAddiction {
+
+	public static void main(String[] args) {
+		// variables
+		int mostFrequentNumberTimes = 0, mostFrequentLetter = 0, mostFreqCounter=0, leastFrequentNumberTimes = 100, leastFrequentLetter = 0, leastFreqCounter = 0, tempFrequency = 0, alphabet = 97;
+		String userInput;
+		Scanner keyboard = new Scanner(System.in);
+		
+		
+		
+		// greet the user and ask for user the input
+		System.out.print("===========================\n");
+		System.out.print("Welcome to the Counting Addiction Program\n");
+		System.out.print("===========================\n");
+		System.out.print("\nEnter a sentence: ");
+		userInput = keyboard.nextLine();
+		
+		
+		
+		// check each letter of the string
+		for (int i=0; i<=25; i++) { // will check for every letter in the alphabet.
+
+			for (int j=0; j < userInput.length(); j++) { // check for every character in the string
+				if (userInput.toLowerCase().charAt(j) == alphabet) { // compare the letter at index and the position in the alphabet
+					tempFrequency++;
+					
+					// most frequent
+					if (tempFrequency > mostFrequentNumberTimes) { // here it checks if the letter is the one that has appeared the most
+						mostFreqCounter = 0;
+						mostFrequentNumberTimes = tempFrequency;
+						mostFrequentLetter = alphabet;
+					}
+					if (mostFrequentNumberTimes == tempFrequency) { // if there are multiples maximum letters, it counts it here.
+						mostFreqCounter++;
+					}
+				}
+				
+				// least frequent
+				if (tempFrequency <= leastFrequentNumberTimes && tempFrequency >= 1) { // checks if it could be the least frequent letter
+					leastFreqCounter = 0;
+					leastFrequentNumberTimes = tempFrequency;
+					leastFrequentLetter = alphabet;
+					
+					if (tempFrequency == leastFrequentNumberTimes) { // if there are multiples least frequent letters, it counts it here.
+						leastFreqCounter++;
+					}
+				}
+			}
+
+			// output the letter name and the frequency of appearances.
+			System.out.print("\nThe letter " + ((char)alphabet) + " has a frequency of " + tempFrequency);
+			tempFrequency = 0;
+			alphabet++;
+		}
+		
+		
+		
+		// outputs the results
+		System.out.print("\n");
+		
+		// output first for the most frequent
+		if (mostFreqCounter == 1) { // if there is only 1 most frequent letter
+			switch ((char)mostFrequentLetter) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'y': 	System.out.println("\nThe most frequent letters appears " + mostFrequentNumberTimes + " times.");
+						System.out.println("There is only one such letter: it is '" + (char)mostFrequentLetter + "' and it is a vowel. ");
+						break;
+			default: 	System.out.println("\nThe most frequent letters appears " + mostFrequentNumberTimes + " times.");
+						System.out.println("There is only one such letter: it is '" + (char)mostFrequentLetter + "' and it is not a vowel. ");
+			}
+		}
+		if (mostFreqCounter != 1) {
+			System.out.println("\nThe most frequent letters appears " + mostFrequentNumberTimes + " times.");
+			System.out.println("There are " + mostFreqCounter + " such letters.");
+		}
+		
+		// output then for the least frequent.
+		if (leastFreqCounter == 1) { // if there is only 1 most frequent letter
+			switch ((char)leastFrequentLetter) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'y': 	System.out.println("\nThe least frequent letters appears " + leastFrequentNumberTimes + " times.");
+						System.out.println("There is only one such letter: it is '" + (char)leastFrequentLetter + "' and it is a vowel. ");
+						break;
+			default: 	System.out.println("\nThe least frequent letters appears " + leastFrequentNumberTimes + " times.");
+						System.out.println("There is only one such letter: it is '" + (char)leastFrequentLetter + "' and it is not a vowel. ");
+			}
+		}
+		if (leastFreqCounter != 1) {
+			System.out.println("\nThe least frequent letters appears " + leastFrequentNumberTimes + " times.");
+			System.out.println("There are " + leastFreqCounter + " such letters.");
+		}
+		
+		
+		// close scanner
+		keyboard.close();
+
+	}
+
+}
